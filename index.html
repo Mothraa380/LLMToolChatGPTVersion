@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Boeing vs Airbus</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  .container {
+    display: flex;
+    height: 100vh;
+  }
+  .boeing {
+    flex: 1;
+    background-color: #2196F3;
+    color: white;
+    padding: 20px;
+    overflow-y: auto;
+  }
+  .airbus {
+    flex: 1;
+    background-color: #FF0000;
+    color: white;
+    padding: 20px;
+    overflow-y: auto;
+  }
+  .back-btn {
+    background-color: #f0f0f0;
+    color: #333;
+    border: none;
+    padding: 8px 16px;
+    cursor: pointer;
+    margin-bottom: 10px;
+  }
+  .plane-list {
+    list-style: none;
+    padding: 0;
+    cursor: pointer;
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <div class="boeing">
+    <button class="back-btn" id="boeing-back">Back</button>
+    <ul class="plane-list" id="boeing-list">
+      <li class="plane-item">Boeing 737</li>
+      <li class="plane-item">Boeing 747</li>
+      <li class="plane-item">Boeing 757</li>
+      <!-- Add more Boeing planes as needed -->
+    </ul>
+  </div>
+  <div class="airbus">
+    <button class="back-btn" id="airbus-back">Back</button>
+    <ul class="plane-list" id="airbus-list">
+      <li class="plane-item">Airbus A320</li>
+      <li class="plane-item">Airbus A330</li>
+      <li class="plane-item">Airbus A380</li>
+      <!-- Add more Airbus planes as needed -->
+    </ul>
+  </div>
+</div>
+
+<script>
+  // Boeing side
+  const boeingList = document.getElementById('boeing-list');
+  const boeingBackBtn = document.getElementById('boeing-back');
+  
+  boeingList.addEventListener('click', function(event) {
+    const selectedPlane = event.target.innerText;
+    showPlaneDetails(selectedPlane, 'Boeing');
+  });
+  
+  boeingBackBtn.addEventListener('click', function() {
+    boeingList.style.display = 'block';
+    document.getElementById('boeing-details').style.display = 'none';
+  });
+  
+  // Airbus side
+  const airbusList = document.getElementById('airbus-list');
+  const airbusBackBtn = document.getElementById('airbus-back');
+  
+  airbusList.addEventListener('click', function(event) {
+    const selectedPlane = event.target.innerText;
+    showPlaneDetails(selectedPlane, 'Airbus');
+  });
+  
+  airbusBackBtn.addEventListener('click', function() {
+    airbusList.style.display = 'block';
+    document.getElementById('airbus-details').style.display = 'none';
+  });
+  
+  // Function to show plane details
+  function showPlaneDetails(planeName, companyName) {
+    const detailsDiv = document.createElement('div');
+    detailsDiv.id = companyName.toLowerCase() + '-details';
+    detailsDiv.innerHTML = `<h2>${planeName}</h2>
+                            <p>Basic information about ${planeName}.</p>`;
+    document.querySelector('.' + companyName.toLowerCase()).appendChild(detailsDiv);
+    document.getElementById(companyName.toLowerCase() + '-list').style.display = 'none';
+  }
+</script>
+
+</body>
+</html>
